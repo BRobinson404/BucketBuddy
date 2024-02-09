@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload to S3</title>
+</head>
+<body>
+    <h1>File Upload to S3</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file">
+        <button type="submit">Upload File</button>
+    </form>
+
+    <h2>List Objects</h2>
+    <button onclick="listObjects()">List Objects</button>
+    <div id="objectList"></div>
+
+    <script>
+        async function listObjects() {
+            const response = await fetch('/listObjects');
+            const objects = await response.json();
+            const objectList = document.getElementById('objectList');
+            objectList.innerHTML = '<ul>' + objects.map(object => `<li>${object.Key}</li>`).join('') + '</ul>';
+        }
+    </script>
+</body>
+</html>
