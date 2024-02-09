@@ -9,8 +9,7 @@ app.use(fileUpload());
 
 // AWS SDK configuration
 const s3Client = new S3Client({
-    region: 'us-east-1',
-    forcePathStyle: true
+    region: 'us-east-1'
 });
 
 app.get('/', (req, res) => {
